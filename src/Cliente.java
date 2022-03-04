@@ -24,10 +24,7 @@ public class Cliente {
 				 Clientes  aluno = new Clientes(fields[0], fields[1], Double.parseDouble(fields[2]),
 		    			  fields[3], fields[4], fields[5], Integer.parseInt(fields[6]), Integer.parseInt(fields[7])  );
 			
-			
-      
-      
-      
+			     
 				      try {
 				    	  
 				
@@ -41,9 +38,11 @@ public class Cliente {
 				         Acesso stub3= (Acesso) registry.lookup("acesso");
 				 
 				         // Chama o método do servidor e imprime a mensagem
+				         System.out.println("======================================== ");
+				         System.out.println("Processamento para o aluno: " + aluno.getNome());
 				        String msg = stub.pgto_metodo(aluno.getNomecc(), aluno.getNumcc(),
 				        		aluno.getValidadecc(), aluno.getCodvcc());
-				        System.out.println("Mensagem do Servidor: " + msg);
+				        System.out.println("Mensagem do Servidor Pagamento: " + msg);
 				        
 				        String msg2 = stub2.nf_metodo(aluno.getNome(), aluno.getValor(), aluno.getCpf(), aluno.getCurso());
 				        System.out.println("Mensagem do Servidor NF : " + msg2); 
@@ -51,7 +50,7 @@ public class Cliente {
 				        String msg3 = stub3.acesso_metodo(aluno.getNome(), aluno.getCurso(), aluno.getValor(),
 				        		aluno.getCpf(), aluno.getNomecc(), aluno.getNumcc(), 
 				        		aluno.getValidadecc(), aluno.getCodvcc());
-				        System.out.println("Mensagem do Servidor acesso : " + msg3); 
+				        System.out.println("Mensagem do Servidor Acesso : " + msg3); 
 				        
 				        
 				      } catch (Exception ex) {
