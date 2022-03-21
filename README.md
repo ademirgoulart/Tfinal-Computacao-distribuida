@@ -32,3 +32,5 @@ O processamento da transação em cada subsistema deve ser registrado por meio d
 A falha na execução das operações pode ser determinada de forma aleatória ou por meio da interface do programa;
 Crie um programa de teste que envie requisições ao sistema a uma taxa que permita acompanhar o andamento da execução.
 
+# Solução usando JAVA RMI 
+
