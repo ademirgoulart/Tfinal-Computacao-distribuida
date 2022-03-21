@@ -1,3 +1,4 @@
+
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -22,16 +23,42 @@ public class ServerPgto implements Pgto {
 		}
 	}
 
-	public String pgto_metodo(String nomecc, String numcc, 
+	public int pgto_metodo(int op, String nomecc, String numcc, 
 			int validadecc, int codvcc ) throws RemoteException {
-		System.out.println("---------------------------------------------");
-		System.out.println("|       Validando o Pagamento               |");
-		System.out.println("---------------------------------------------");
-		System.out.println("Nome no cartão  : " + nomecc);
-		System.out.println("Numero do cartão: " + numcc);
-		System.out.println("Validade        : " + validadecc);
-		System.out.println("Codigo Val      : " + codvcc);
-		return "1";
+		if (op==1) {// operação de debito no cartão
+			if (codvcc > 0) {
+				System.out.println("---------------------------------------------");
+				System.out.println("|       Validando o Pagamento               |");
+				System.out.println("---------------------------------------------");
+				System.out.println("Nome no cartão  : " + nomecc);
+				System.out.println("Numero do cartão: " + numcc);
+				System.out.println("Validade        : " + validadecc);
+				System.out.println("Codigo Val      : " + codvcc);
+				return 1;
+			}
+			else 
+				System.out.println("---------------------------------------------");
+				System.out.println("|         Erro no Pagamento                 |");
+				System.out.println("---------------------------------------------");
+				System.out.println("Nome no cartão  : " + nomecc);
+				System.out.println("Numero do cartão: " + numcc);
+				System.out.println("Validade        : " + validadecc);
+				System.out.println("Codigo Val      : " + codvcc);
+				return 2;
+		}
+		else {// operação de estorno do valor na operadora do cartão
+			System.out.println("---------------------------------------------");
+			System.out.println("|       Extornando o Pagamento               |");
+			System.out.println("---------------------------------------------");
+			System.out.println("Nome no cartão  : " + nomecc);
+			System.out.println("Numero do cartão: " + numcc);
+			System.out.println("Validade        : " + validadecc);
+			System.out.println("Codigo Val      : " + codvcc);
+			return 2;
+			
+		}
+		
+		
 	}
 }
 

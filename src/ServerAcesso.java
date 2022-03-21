@@ -22,22 +22,26 @@ public class ServerAcesso implements Acesso {
 		}
 	}
 
-	public String acesso_metodo(String nome, String curso, Double valor, String cpf, 
-			String nomecc, String numcc, int validadecc, int codvcc) throws RemoteException {
-	
-		System.out.println("--------------------------------------------");
-		System.out.println("|          Acesso Confirmado gravar BD     |");
-		System.out.println("--------------------------------------------");
-		System.out.println("Nome: \t\t" + nome);
-		System.out.println("Curso:\t\t" + curso);
-		System.out.println("Valor:\t\t" + valor);	
-		System.out.println("CPF: \t\t" + cpf);
-		System.out.println("Nome CC: \t" + nomecc);
-		System.out.println("Num CC: \t" + numcc);
-		System.out.println("Validade CC: \t" + validadecc);
-		System.out.println("Cod V CC: \t" + codvcc);
-		System.out.println("\n");
-		return "1";
+	public int acesso_metodo(String nome, String curso, Double valor, String cpf, 
+			String nomecc, String numcc, int validadecc, int codvcc, String email) throws RemoteException {
+		if(email.contains("@")) {
+			System.out.println("--------------------------------------------");
+			System.out.println("|  acesso Confirmado para aluno Vigente    |");
+			System.out.println("--------------------------------------------");
+			System.out.println("Nome: \t\t" + nome);
+			System.out.println("Nome: \t\t" + email);
+			System.out.println("Curso:\t\t" + curso);
+			System.out.println("Valor:\t\t" + valor);	
+			System.out.println("CPF: \t\t" + cpf);
+			System.out.println("Nome CC: \t" + nomecc);
+			System.out.println("Num CC: \t" + numcc);
+			System.out.println("Validade CC: \t" + validadecc);
+			System.out.println("Cod V CC: \t" + codvcc);
+			System.out.println("\n");
+			return 1;			
+		}
+		else return 2;
+		
 	}
 }
 

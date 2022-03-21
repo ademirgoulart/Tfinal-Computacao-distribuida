@@ -9,8 +9,10 @@ public class Clientes {
 	private String numcc;
 	private int validadecc;
 	private int codvcc;
+	private String email;
+	private int estado;  // pendente =1 ; vigente =2; cancelado =3
 	public Clientes(String nome, String curso, Double valor, String cpf, String nomecc, String numcc, int validadecc,
-			int codvcc) {
+			int codvcc, String email, int estado) {
 		super();
 		this.nome = nome;
 		this.curso = curso;
@@ -20,6 +22,8 @@ public class Clientes {
 		this.numcc = numcc;
 		this.validadecc = validadecc;
 		this.codvcc = codvcc;
+		this.email = email;
+		this.estado = estado;
 	}
 	public String getNome() {
 		return nome;
@@ -69,8 +73,20 @@ public class Clientes {
 	public void setCodvcc(int codvcc) {
 		this.codvcc = codvcc;
 	}
-	
-	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public int getEstado() {
+		return estado;
+	}
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
+
+}			
 	
 
-}
+

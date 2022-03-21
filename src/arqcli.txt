@@ -1,5 +1,6 @@
-fulano de tal 01,engenharia,5000.00,19222222234,Fulano do cartao 01,2222444400005555,122024,123
-fulano de tal 02,computacao,5000.00,19222422234,Fulano do cartao 02,2222777700005555,082023,453
-fulano de tal 03,java,4000.00,19225222234,Fulano do cartao 03,2222444400003333,072026,672
-fulano de tal 04,matematica,5500.00,19222222234,Fulano do cartao 04,6666444400005555,042024,482
-fulano de tal 05,fisica,5050.10,19244222234,Fulano do cartao 05,2222000000005555,012024,904
+fulano de tal 01,engenharia,5000.00,19222222234,Fulano do cartao 01,2222444400005555,122024,123,fulano1@gmail.com
+fulano de tal 02,computacao,5000.00,19222422234,Fulano do cartao 02,2222777700005555,082023,453,fulano2@hotmail.com
+fulano de tal 03,java,4000.00,19225222234,Fulano do cartao 03,2222444400003333,072026,0,fulano3@gmail.com 
+fulano de tal 04,matematica,5500.00,19222222234,Fulano do cartao 04,6666444400005555,042024,482,xyz
+fulano de tal 05,fisica,5050.10,0,Fulano do cartao 05,2222000000005555,012024,904,fulano5@gmail.com
+fulano de tal 06,computacao,5000.00,19247822234,Fulano do cartao 06,2222777778905555,042023,477,fulano6@hotmail.com
