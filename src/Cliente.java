@@ -10,6 +10,7 @@ import entities.Clientes;
 //   ativar inicialmente rmiregistry 
 public class Cliente {
 	public static void main(String[] args) {
+	  int retorno_pgto = 0, retorno_nf=0, retorno_liberacao=0;	
       String host = (args.length < 1) ? null : args[0];
       Locale.setDefault(Locale.US);
       Scanner sc = new Scanner(System.in);      
@@ -25,7 +26,7 @@ public class Cliente {
 		    			  Integer.parseInt(fields[6]), Integer.parseInt(fields[7]), fields[8], 1  );
 						     
 				      try {
-										    	 
+									    	 
 				         // Obtém uma referência para o registro do RMI
 				         Registry registry = LocateRegistry.getRegistry(host);
 				 
@@ -33,32 +34,35 @@ public class Cliente {
 				         Pgto stub= (Pgto) registry.lookup("pgto");   		// Pgto  &  ServerPgto
 				         Nf stub2= (Nf) registry.lookup("nf"); 				// Nf    &  ServerNf
 				         Acesso stub3= (Acesso) registry.lookup("acesso");	//Acesso &  ServerAcesso
-				 
+				   
 				         //  imprime a mensagem para o aluno em processamento
 				         System.out.println("======================================== ");
 				         System.out.println("Processamento para o aluno: " + aluno.getNome());
+				         aluno.setEstado(3); // inicial com cancelado prevendo erro conexão
 				        
 				         // Chama o método do servidor que trata pagamento
-				         int  retorno_pgto = stub.pgto_metodo(1, aluno.getNomecc(), aluno.getNumcc(),
+				          retorno_pgto = stub.pgto_metodo(1, aluno.getNomecc(), aluno.getNumcc(),
 				        		aluno.getValidadecc(), aluno.getCodvcc());
 				         
 				         if (retorno_pgto == 1) {
 				        	 System.out.println("Mensagem do Servidor Pagamento: Pagamento processado OK." );
-				        	// Chama o método do servidor que trata Nota fiscal
-					         int  retorno_nf = stub2.nf_metodo(1, aluno.getNome(), aluno.getValor(), 
+				        	 aluno.setEstado(1);  // estado pendente
+ 				        	// Chama o método do servidor que trata Nota fiscal
+					           retorno_nf = stub2.nf_metodo(1, aluno.getNome(), aluno.getValor(), 
 					        		 aluno.getCpf(), aluno.getCurso());
 					         
 					         if (retorno_nf == 1) {
 					        	 System.out.println("Mensagem do Servidor NF : Nota Fiscal emitida OK."); 
 					        	 // Chama o método do servidor que trata liberação do aluno
-						         int retorno_liberacao = stub3.acesso_metodo(aluno.getNome(), aluno.getCurso(), aluno.getValor(),
+						          retorno_liberacao = stub3.acesso_metodo(aluno.getNome(), aluno.getCurso(), aluno.getValor(),
 						        		aluno.getCpf(), aluno.getNomecc(), aluno.getNumcc(), 
 						        		aluno.getValidadecc(), aluno.getCodvcc(), aluno.getEmail());
 						         
 						         if (retorno_liberacao == 1) {
 						        	 System.out.println("Mensagem do Servidor Acesso : Acesso processado OK. "); 
 						        	 // confirma efetivação torna estado = vigente   codigo 2
-						        	 aluno.setEstado(2);
+						        	 aluno.setEstado(2);  //  estado vigente
+						        	 // Neste ponto inclui o aluno no Banco de dados
 						        	 
 						         }
 						         else {
@@ -96,7 +100,9 @@ public class Cliente {
 				         
 				        
 				      } catch (Exception ex) {
-				         ex.printStackTrace();
+				    	  System.out.println("Erro na conexao com Servidor -> " + ex.getMessage());
+				    	 
+				    	  
 				      } 
 				      
 				      itemCsv = br.readLine();
