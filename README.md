@@ -34,3 +34,5 @@ Crie um programa de teste que envie requisições ao sistema a uma taxa que perm
 
 # Solução usando JAVA RMI 
 
+
+![Diagrama](https://user-images.githubusercontent.com/63169408/159482561-8c895fde-0412-4ea9-8bd6-1ebf46a240b9.jpg)
