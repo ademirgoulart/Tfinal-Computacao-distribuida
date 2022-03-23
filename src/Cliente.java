@@ -101,6 +101,12 @@ public class Cliente {
 				        
 				      } catch (Exception ex) {
 				    	  System.out.println("Erro na conexao com Servidor -> " + ex.getMessage());
+				    	  if (retorno_pgto == 1) {
+				    		  System.out.println("Extornando Pagamento..." );				    						    		  
+				    	  }
+				    	  if (retorno_nf == 1) {
+				    		  System.out.println("Extornando Nota fiscal..." );				    		  
+				    	  }
 				    	 
 				    	  
 				      } 
